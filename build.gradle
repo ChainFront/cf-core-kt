@@ -62,9 +62,6 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
 
     // Spring cloud vault
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-vault-config'
-    compile group: 'org.springframework.cloud', name: 'spring-cloud-vault-config-aws'
-    // Force upgrade to 2.1.0 for improved exception handling
     compile group: 'org.springframework.vault', name: 'spring-vault-core', version: '2.1.0.RELEASE'
 
     // Spring Security OAuth
@@ -86,6 +83,9 @@ dependencies {
 
     // Phone number parsing and validation with Google libphonenumber
     compile group: 'com.googlecode.libphonenumber', name: 'libphonenumber', version: '8.9.15'
+
+    // Password validation
+    compile group: 'org.passay', name: 'passay', version: '1.0'
 
     // Spring Data
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
