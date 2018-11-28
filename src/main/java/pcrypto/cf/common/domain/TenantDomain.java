@@ -1,6 +1,6 @@
 package pcrypto.cf.common.domain;
 
-import org.hibernate.annotations.Immutable;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
 
+@Data
 @Entity
-@Immutable
 @Table( name = "tenant",
         schema = "master" )
 public class TenantDomain
@@ -30,6 +30,8 @@ public class TenantDomain
 
     private String name;
 
+    private String schemaName;
+
     private boolean locked;
 
     private OffsetDateTime createdDate;
@@ -37,74 +39,4 @@ public class TenantDomain
     private OffsetDateTime lastModifiedDate;
 
     private LocalDateTime deletedDate;
-
-    public Long getId()
-    {
-        return id;
-    }
-
-    public void setId( final Long id )
-    {
-        this.id = id;
-    }
-
-    public String getCode()
-    {
-        return code;
-    }
-
-    public void setCode( final String code )
-    {
-        this.code = code;
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public void setName( final String name )
-    {
-        this.name = name;
-    }
-
-    public boolean isLocked()
-    {
-        return locked;
-    }
-
-    public void setLocked( final boolean locked )
-    {
-        this.locked = locked;
-    }
-
-    public OffsetDateTime getCreatedDate()
-    {
-        return createdDate;
-    }
-
-    public void setCreatedDate( final OffsetDateTime createdDate )
-    {
-        this.createdDate = createdDate;
-    }
-
-    public OffsetDateTime getLastModifiedDate()
-    {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate( final OffsetDateTime lastModifiedDate )
-    {
-        this.lastModifiedDate = lastModifiedDate;
-    }
-
-    public LocalDateTime getDeletedDate()
-    {
-        return deletedDate;
-    }
-
-    public void setDeletedDate( final LocalDateTime deletedDate )
-    {
-        this.deletedDate = deletedDate;
-    }
 }
