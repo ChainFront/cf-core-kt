@@ -40,7 +40,7 @@ public class PasswordConstraintValidator
 
         if ( !result.isValid() )
         {
-            final String message = Joiner.on( "," ).join( validator.getMessages( result ) );
+            final String message = "Invalid password: " + Joiner.on( " " ).join( validator.getMessages( result ) );
             addViolation( constraintValidatorContext, message );
             valid = false;
         }

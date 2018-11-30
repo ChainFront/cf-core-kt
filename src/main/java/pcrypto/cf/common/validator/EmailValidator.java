@@ -40,7 +40,7 @@ public class EmailValidator
         boolean valid = true;
         if ( StringUtils.isNotBlank( email ) && !pattern.matcher( email ).matches() )
         {
-            addViolation( constraintValidatorContext, "must be a valid email address." );
+            addViolation( constraintValidatorContext, "Invalid email address." );
             valid = false;
         }
 
