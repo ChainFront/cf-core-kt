@@ -46,7 +46,7 @@ public class PhoneNumberValidator
 
         if ( !valid )
         {
-            addViolation( constraintValidatorContext, "must be a valid phoneNumber." );
+            addViolation( constraintValidatorContext, "Invalid phone number." );
         }
 
         return valid;
