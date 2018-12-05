@@ -92,6 +92,25 @@ public class ControllerExceptionHandler
         return new ResponseEntity<>( apiError, HttpStatus.NOT_FOUND );
     }
 
+    @ResponseStatus( value = HttpStatus.UNAUTHORIZED )
+    @ExceptionHandler( value = { UnauthorizedException.class } )
+    @ResponseBody
+    protected ResponseEntity<ApiError> handleUnauthorizedException( final UnauthorizedException e )
+    {
+        final ApiError apiError = ApiError.Builder
+              .apiError()
+              .withHttpMessage( HttpStatus.UNAUTHORIZED.getReasonPhrase() )
+              .withHttpStatusCode( HttpStatus.UNAUTHORIZED.value() )
+              .withDescription( e.getMessage() )
+              .withDetails( e.getDetails() )
+              .withSupportReferenceId( UUID.randomUUID().toString() )
+              .build();
+
+        logger.error( apiError.toString(), e );
+
+        return new ResponseEntity<>( apiError, HttpStatus.UNAUTHORIZED );
+    }
+
     @ResponseStatus( value = HttpStatus.FORBIDDEN )
     @ExceptionHandler( value = { ForbiddenException.class } )
     @ResponseBody
