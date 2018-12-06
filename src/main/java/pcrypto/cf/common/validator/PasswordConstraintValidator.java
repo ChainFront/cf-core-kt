@@ -1,6 +1,5 @@
 package pcrypto.cf.common.validator;
 
-import com.google.common.base.Joiner;
 import org.passay.AlphabeticalSequenceRule;
 import org.passay.DigitCharacterRule;
 import org.passay.LengthRule;
@@ -16,6 +15,7 @@ import pcrypto.cf.common.validator.annotation.ValidPassword;
 
 import javax.validation.ConstraintValidatorContext;
 import java.util.Arrays;
+import java.util.List;
 
 
 public class PasswordConstraintValidator
@@ -40,8 +40,11 @@ public class PasswordConstraintValidator
 
         if ( !result.isValid() )
         {
-            final String message = "Invalid password: " + Joiner.on( " " ).join( validator.getMessages( result ) );
-            addViolation( constraintValidatorContext, message );
+            final List<String> messages = validator.getMessages( result );
+            for ( final String message : messages )
+            {
+                addViolation( constraintValidatorContext, message );
+            }
             valid = false;
         }
 
