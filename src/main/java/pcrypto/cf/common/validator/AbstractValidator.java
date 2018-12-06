@@ -1,7 +1,5 @@
 package pcrypto.cf.common.validator;
 
-import org.apache.commons.lang3.StringUtils;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.lang.annotation.Annotation;
@@ -22,10 +20,10 @@ public abstract class AbstractValidator<ANNOTATION extends Annotation, TYPE>
         final ConstraintValidatorContext.ConstraintViolationBuilder constraintViolationBuilder =
               constraintValidatorContext.buildConstraintViolationWithTemplate( message );
 
-        if ( StringUtils.isNotBlank( node ) )
-        {
-            constraintViolationBuilder.addNode( node );
-        }
+        //        if ( StringUtils.isNotBlank( node ) )
+        //        {
+        //            constraintViolationBuilder.addNode( node );
+        //        }
 
         constraintViolationBuilder.addConstraintViolation();
     }
