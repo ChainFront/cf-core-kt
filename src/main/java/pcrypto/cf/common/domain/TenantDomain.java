@@ -30,6 +30,10 @@ public class TenantDomain
 
     private String name;
 
+    private String email;
+
+    private String phone;
+
     private String schemaName;
 
     private boolean locked;
