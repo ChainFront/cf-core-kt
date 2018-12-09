@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -103,6 +104,23 @@ public class ControllerExceptionHandler
               .withHttpStatusCode( HttpStatus.UNAUTHORIZED.value() )
               .withDescription( e.getMessage() )
               .withDetails( e.getDetails() )
+              .withSupportReferenceId( UUID.randomUUID().toString() )
+              .build();
+
+        logger.error( apiError.toString(), e );
+
+        return new ResponseEntity<>( apiError, HttpStatus.UNAUTHORIZED );
+    }
+
+    @ResponseStatus( value = HttpStatus.UNAUTHORIZED )
+    @ExceptionHandler( value = { BadCredentialsException.class } )
+    @ResponseBody
+    protected ResponseEntity<ApiError> handleBadCredentialsException( final BadCredentialsException e )
+    {
+        final ApiError apiError = ApiError.Builder
+              .apiError()
+              .withHttpMessage( HttpStatus.UNAUTHORIZED.getReasonPhrase() )
+              .withHttpStatusCode( HttpStatus.UNAUTHORIZED.value() )
               .withSupportReferenceId( UUID.randomUUID().toString() )
               .build();
 
