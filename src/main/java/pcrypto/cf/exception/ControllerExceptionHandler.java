@@ -25,6 +25,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -339,6 +340,25 @@ public class ControllerExceptionHandler
         logger.error( apiError.toString(), ex );
 
         return super.handleExceptionInternal( ex, apiError, headers, status, request );
+    }
+
+    @ResponseStatus( value = HttpStatus.NOT_IMPLEMENTED )
+    @ExceptionHandler( UnsupportedOperationException.class )
+    @ResponseBody
+    protected ResponseEntity<ApiError> handleUnsupportedOperationException( final UnsupportedOperationException e )
+    {
+        final ApiError apiError = ApiError.Builder
+              .apiError()
+              .withHttpMessage( HttpStatus.NOT_IMPLEMENTED.getReasonPhrase() )
+              .withHttpStatusCode( HttpStatus.NOT_IMPLEMENTED.value() )
+              .withDescription( "This feature has not yet been implemented, or is not enabled for your account." )
+              .withDetails( Collections.singletonList( new ErrorMessage( e.getMessage(), null ) ) )
+              .withSupportReferenceId( UUID.randomUUID().toString() )
+              .build();
+
+        logger.error( apiError.toString(), e );
+
+        return new ResponseEntity<>( apiError, HttpStatus.NOT_IMPLEMENTED );
     }
 
     @ResponseStatus( value = HttpStatus.INTERNAL_SERVER_ERROR )
