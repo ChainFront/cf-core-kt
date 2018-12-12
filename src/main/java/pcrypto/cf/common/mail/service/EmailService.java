@@ -31,6 +31,20 @@ public class EmailService
     }
 
 
+    public void sendTextEmail( final String recipient,
+                               final String subject,
+                               final String body )
+    {
+        final MimeMessagePreparator messagePreparator = mimeMessage -> {
+            final MimeMessageHelper messageHelper = new MimeMessageHelper( mimeMessage, MimeMessageHelper.MULTIPART_MODE_NO );
+            messageHelper.setFrom( emailFrom );
+            messageHelper.setTo( recipient );
+            messageHelper.setSubject( subject );
+            messageHelper.setText( body, false );
+        };
+
+        mailSender.send( messagePreparator );
+    }
 
     public void sendRegistrationEmail( final String recipient,
                                        final String registrationConfirmationUrl )
