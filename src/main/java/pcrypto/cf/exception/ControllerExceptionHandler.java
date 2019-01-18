@@ -168,6 +168,25 @@ public class ControllerExceptionHandler
         return new ResponseEntity<>( apiError, HttpStatus.BAD_REQUEST );
     }
 
+    @ResponseStatus( value = HttpStatus.CONFLICT )
+    @ExceptionHandler( value = { ConflictException.class } )
+    @ResponseBody
+    protected ResponseEntity<ApiError> handleConflictException( final ConflictException e )
+    {
+        final ApiError apiError = ApiError.Builder
+              .apiError()
+              .withHttpMessage( HttpStatus.CONFLICT.getReasonPhrase() )
+              .withHttpStatusCode( HttpStatus.CONFLICT.value() )
+              .withDescription( e.getMessage() )
+              .withDetails( e.getDetails() )
+              .withSupportReferenceId( UUID.randomUUID().toString() )
+              .build();
+
+        logger.error( apiError.toString(), e );
+
+        return new ResponseEntity<>( apiError, HttpStatus.CONFLICT );
+    }
+
     @ResponseStatus( value = HttpStatus.INTERNAL_SERVER_ERROR )
     @ExceptionHandler( value = { BlockchainServiceException.class } )
     @ResponseBody
