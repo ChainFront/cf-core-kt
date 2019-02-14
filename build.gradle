@@ -113,7 +113,7 @@ dependencies {
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
 
     // Ethereum client
-    compile 'org.web3j:core:3.5.0'
+    compile 'org.web3j:core:4.1.0'
 
     // Stellar client (custom forked build to work with JDK 10 and Spring Boot 2)
     compile( 'stellar:java-stellar-sdk:0.3.4' ) {
