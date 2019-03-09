@@ -187,6 +187,25 @@ public class ControllerExceptionHandler
         return new ResponseEntity<>( apiError, HttpStatus.CONFLICT );
     }
 
+    @ResponseStatus( value = HttpStatus.BAD_REQUEST )
+    @ExceptionHandler( value = { InsufficentBalanceException.class } )
+    @ResponseBody
+    protected ResponseEntity<ApiError> handleInsufficentBalanceException( final InsufficentBalanceException e )
+    {
+        final ApiError apiError = ApiError.Builder
+              .apiError()
+              .withHttpMessage( HttpStatus.BAD_REQUEST.getReasonPhrase() )
+              .withHttpStatusCode( HttpStatus.BAD_REQUEST.value() )
+              .withDescription( e.getMessage() )
+              .withDetails( e.getDetails() )
+              .withSupportReferenceId( UUID.randomUUID().toString() )
+              .build();
+
+        logger.error( apiError.toString(), e );
+
+        return new ResponseEntity<>( apiError, HttpStatus.BAD_REQUEST );
+    }
+
     @ResponseStatus( value = HttpStatus.INTERNAL_SERVER_ERROR )
     @ExceptionHandler( value = { BlockchainServiceException.class } )
     @ResponseBody
