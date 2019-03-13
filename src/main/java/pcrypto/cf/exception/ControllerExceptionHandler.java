@@ -187,15 +187,15 @@ public class ControllerExceptionHandler
         return new ResponseEntity<>( apiError, HttpStatus.CONFLICT );
     }
 
-    @ResponseStatus( value = HttpStatus.BAD_REQUEST )
+    @ResponseStatus( value = HttpStatus.UNPROCESSABLE_ENTITY )
     @ExceptionHandler( value = { InsufficentBalanceException.class } )
     @ResponseBody
     protected ResponseEntity<ApiError> handleInsufficentBalanceException( final InsufficentBalanceException e )
     {
         final ApiError apiError = ApiError.Builder
               .apiError()
-              .withHttpMessage( HttpStatus.BAD_REQUEST.getReasonPhrase() )
-              .withHttpStatusCode( HttpStatus.BAD_REQUEST.value() )
+              .withHttpMessage( HttpStatus.UNPROCESSABLE_ENTITY.getReasonPhrase() )
+              .withHttpStatusCode( HttpStatus.UNPROCESSABLE_ENTITY.value() )
               .withDescription( e.getMessage() )
               .withDetails( e.getDetails() )
               .withSupportReferenceId( UUID.randomUUID().toString() )

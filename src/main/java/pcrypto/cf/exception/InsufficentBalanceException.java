@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Exception for payment requests where the source account cannot fund the transaction.
  */
-@ResponseStatus( HttpStatus.BAD_REQUEST )
+@ResponseStatus( HttpStatus.UNPROCESSABLE_ENTITY )
 public class InsufficentBalanceException
       extends AbstractApiException
 {
