@@ -18,6 +18,7 @@ package pcrypto.cf.common.domain
 
 import javax.persistence.JoinColumn
 import javax.persistence.ManyToOne
+import javax.persistence.MappedSuperclass
 
 
 /**
@@ -26,10 +27,11 @@ import javax.persistence.ManyToOne
  * **Important note: the tenant information in this object is not used for virtual tenant separation.
  * Separation is handled by using different schemas per-tenant.**
  */
+@MappedSuperclass
 abstract class AbstractBaseDomain {
 
     @ManyToOne
     @JoinColumn(name = "tenant_id")
-    private val tenantDomain: TenantDomain? = null
+    var tenantDomain: TenantDomain? = null
 
 }

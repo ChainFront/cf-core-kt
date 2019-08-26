@@ -28,28 +28,28 @@ class ApiUserDomain : AbstractAuditableDomain() {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "api_user_id_gen")
     @SequenceGenerator(name = "api_user_id_gen", sequenceName = "api_user_seq", allocationSize = 1)
-    private val id: Long? = null
+    var id: Long? = null
 
     @NotBlank(message = "User name is a required field")
-    private val userName: String? = null
+    var userName: String? = null
 
     @NotBlank(message = "First name is a required field")
-    private val firstName: String? = null
+    var firstName: String? = null
 
     @NotBlank(message = "Last name is a required field")
-    private val lastName: String? = null
+    var lastName: String? = null
 
-    private val email: String? = null
+    var email: String? = null
 
-    private val phone: String? = null
+    var phone: String? = null
 
-    private val locked: Boolean? = null
+    var locked: Boolean? = null
 
-    private val expired: Boolean? = null
+    var expired: Boolean? = null
 
-    private val deletedDate: LocalDateTime? = null
+    var deletedDate: LocalDateTime? = null
 
     @NotBlank(message = "Password required")
-    private val password: String? = null
+    var password: String? = null
 
 }

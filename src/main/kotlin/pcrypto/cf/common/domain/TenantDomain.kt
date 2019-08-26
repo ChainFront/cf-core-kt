@@ -28,24 +28,24 @@ class TenantDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tenant_id_gen")
     @SequenceGenerator(name = "tenant_id_gen", sequenceName = "tenant_seq", allocationSize = 1)
-    private val id: Long? = null
+    var id: Long? = null
 
-    private val code: String? = null
+    var code: String? = null
 
-    private val name: String? = null
+    var name: String? = null
 
-    private val email: String? = null
+    var email: String? = null
 
-    private val phone: String? = null
+    var phone: String? = null
 
-    private val schemaName: String? = null
+    var schemaName: String? = null
 
-    private val locked: Boolean = false
+    var locked: Boolean = false
 
-    private val createdDate: OffsetDateTime? = null
+    var createdDate: OffsetDateTime? = null
 
-    private val lastModifiedDate: OffsetDateTime? = null
+    var lastModifiedDate: OffsetDateTime? = null
 
-    private val deletedDate: LocalDateTime? = null
+    var deletedDate: LocalDateTime? = null
 
 }

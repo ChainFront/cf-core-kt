@@ -24,11 +24,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 import java.time.OffsetDateTime
 import javax.persistence.Column
 import javax.persistence.EntityListeners
+import javax.persistence.MappedSuperclass
 
 
 /**
  * Common base object for all tenant-specific entity objects requiring audit data.
  */
+@MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
 abstract class AbstractAuditableDomain : AbstractBaseDomain() {
 
